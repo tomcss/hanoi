@@ -6,7 +6,8 @@ Get all moves at once:
 ```javascript
 let hanoi = new HanoiSolver(3)
 moves = hanoi.allMoves()
-JSON.stringify(moves) // "[[1,3],[1,2],[3,2],[1,3],[2,1],[2,3],[1,3]]"```
+JSON.stringify(moves) // "[[1,3],[1,2],[3,2],[1,3],[2,1],[2,3],[1,3]]"
+```
 
 Get one move at a time:
 
@@ -16,5 +17,5 @@ let move = hanoi.nextMove()
 while( move !== -1) {
     console.log( move);
     move = hanoi.nextMove();
-}```
-    
+}
+```
