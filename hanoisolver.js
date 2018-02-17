@@ -4,21 +4,29 @@ class HanoiSolver {
         this.currentMove = 0
     }
 
+    get totalMoves() {
+        return 2 ** this.segmentCount - 1
+    }
+
+    // segmentToMove( moveNumber)
+    // 
     // Returns the segment number of the
     // segment that needs to be moved at
     // the nth move
-    segmentToMove(n) {
+    //
+    segmentToMove( moveNumber) {
         let i = 1
-        while (n % 2 == 0) {
+        while (moveNumber % 2 == 0) {
             i += 1
-            n /= 2
+            moveNumber /= 2
         }
         return i
     }
 
-
     // target( moveNumber, segment, moveIndex)
-    // returns the target tower for move moveNumber
+    //
+    // returns the target tower for the given move number
+    //
     target(segment, moveIndex) {
         if (moveIndex === 0) return 1 // The 0th move of any segment is tower 1
 
@@ -33,12 +41,13 @@ class HanoiSolver {
         }
 
         return targetTower
-
     }
 
     // move( moveNumber)
+    //
     // returns a two element array with the from and to
-    // tower numbers
+    // tower indices
+    //
     move(moveNumber) {
         if (moveNumber === 0) return [0, 0]
 
@@ -51,28 +60,39 @@ class HanoiSolver {
         return [from, to]
     }
 
+    // segmentMoveIndex( moveNumber, segment)
+    // 
     // The segment move index is the nth move
     // of a particular segment
+    //
     segmentMoveIndex(moveNumber, segment) {
         return Math.ceil(moveNumber / 2 ** segment)
     }
 
-    // calculates the nth move of the solution,
-    // in the format
-    // { segment: segmentIndex, to: towerIndex }
-
-    get totalMoves() {
-        return 2 ** this.segmentCount - 1
-    }
-
+    // allMoves
+    //
+    // returns all the moves in an array. Could start
+    // to eat memory with 20 or more segments.
+    //
     allMoves() {
+        let moves = []
+
         for (let i = 1; i <= this.totalMoves; i++) {
-            console.log(this.move(i))
+            moves.push( this.move( i))
         }
     }
 
-    // Returns the nth move from the solution
-    // in the format { from: towerIndex,
-    // to: towerIndex }
-    nextMove() {}
+    // nextMove
+    //
+    // Returns the next move as stored in
+    // currentMove. Returns -1 if there are no
+    // more moves
+    //
+    nextMove() {
+        if( this.currentMove < this.totalmoves) {
+            return( this.move( ++this.currentMove))
+        } else {
+            return -1
+        }
+    }
 }
