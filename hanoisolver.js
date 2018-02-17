@@ -91,7 +91,7 @@ class HanoiSolver {
     // more moves
     //
     nextMove() {
-        if( this.currentMove < this.totalmoves) {
+        if( this.currentMove < this.totalMoves) {
             return( this.move( ++this.currentMove))
         } else {
             return -1
