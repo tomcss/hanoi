@@ -80,6 +80,8 @@ class HanoiSolver {
         for (let i = 1; i <= this.totalMoves; i++) {
             moves.push( this.move( i))
         }
+
+        return moves
     }
 
     // nextMove
